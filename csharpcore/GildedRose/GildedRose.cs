@@ -5,6 +5,7 @@ namespace GildedRoseKata
     public class GildedRose
     {
         IList<Item> Items;
+
         public GildedRose(IList<Item> Items)
         {
             this.Items = Items;
@@ -26,32 +27,15 @@ namespace GildedRoseKata
 
                     if (v.Name == "Backstage passes to a TAFKAL80ETC concert")
                     {
-                        if (v.SellIn < 11)
-                        {
-                            if (v.Quality < 50)
-                            {
-                                v.Quality++;
-                            }
-                        }
-
-                        if (v.SellIn < 6)
-                        {
-                            if (v.Quality < 50)
-                            {
-                                v.Quality++;
-                            }
-                        }
+                        UpdateQualityForBackstageLessThan11Days(v);
                     }
                 }
             }
             else
             {
-                if (v.Quality > 0)
+                if (v.Quality > 0 && v.Name != "Sulfuras, Hand of Ragnaros")
                 {
-                    if (v.Name != "Sulfuras, Hand of Ragnaros")
-                    {
-                        v.Quality--;
-                    }
+                    v.Quality--;
                 }
             }
 
@@ -72,13 +56,29 @@ namespace GildedRoseKata
                 else if (v.Name == "Backstage passes to a TAFKAL80ETC concert")
                 {
                     v.Quality = 0;
-                } 
-                else 
+                }
+                else if (v.Quality > 0 && v.Name != "Sulfuras, Hand of Ragnaros")
                 {
-                    if (v.Quality > 0 && v.Name != "Sulfuras, Hand of Ragnaros")
-                    {
-                        v.Quality--;
-                    }
+                    v.Quality--;
+                }
+            }
+        }
+
+        private static void UpdateQualityForBackstageLessThan11Days(Item v)
+        {
+            if (v.SellIn < 11)
+            {
+                if (v.Quality < 50)
+                {
+                    v.Quality++;
+                }
+            }
+
+            if (v.SellIn < 6)
+            {
+                if (v.Quality < 50)
+                {
+                    v.Quality++;
                 }
             }
         }
