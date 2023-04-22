@@ -21,18 +21,11 @@ namespace GildedRoseKata
         {
             if (v.Name == "Aged Brie" )
             {
-                if (v.Quality < 50)
-                {
-                    v.Quality++;
-                }
+                increaseQualtyForAgedBrie(v);
             }
             else if  (v.Name == "Backstage passes to a TAFKAL80ETC concert")
             {
-                if (v.Quality < 50)
-                {
-                    v.Quality++;
-                        UpdateQualityForBackstageLessThan11Days(v);
-                }
+                UpdateQualityForBackstagePasses(v);
             }
             else
             {
@@ -66,28 +59,34 @@ namespace GildedRoseKata
 
         private static void increaseQualtyForAgedBrie(Item v)
         {
-            if (v.Quality < 50)
-            {
-                v.Quality++;
-            }
+            IncreaseQuality(v);
         }
 
-        private static void UpdateQualityForBackstageLessThan11Days(Item v)
+        private static void UpdateQualityForBackstagePasses(Item v)
         {
+            IncreaseQuality(v);
+
             if (v.SellIn < 11)
             {
-                if (v.Quality < 50)
-                {
-                    v.Quality++;
-                }
+                IncreaseQuality(v);
             }
 
             if (v.SellIn < 6)
             {
-                if (v.Quality < 50)
-                {
-                    v.Quality++;
-                }
+                IncreaseQuality(v);
+
+
+
+
+                
+            }
+        }
+
+        private static void IncreaseQuality(Item v)
+        {
+            if (v.Quality < 50)
+            {
+                v.Quality++;
             }
         }
     }
