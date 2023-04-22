@@ -66,5 +66,24 @@ namespace GildedRoseTests
             app.UpdateQuality();
             Assert.Equal(50, items[0].Quality);
         }
+
+        [Fact]
+        public void Aged_brie_can_be_initialized_with_quality_higher_than_50_and_quality_is_not_lowered()
+        {
+            IList<Item> items = new List<Item> { new() { Name = "Aged Brie", SellIn = 10, Quality = 51 } };
+            GildedRose app = new GildedRose(items);
+            app.UpdateQuality();
+            Assert.Equal(51, items[0].Quality);
+        }
+
+        // - "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
+        [Fact]
+        public void Sulfuras_can_not_be_initialized_with_quality_less_than_80()
+        {
+            IList<Item> items = new List<Item> { new() { Name = "Aged Brie", SellIn = 10, Quality = 79 } };
+            GildedRose app = new GildedRose(items);
+            app.UpdateQuality();
+            Assert.Equal(79, items[0].Quality);
+        }
     }
 }
