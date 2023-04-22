@@ -69,21 +69,15 @@ namespace GildedRoseKata
                         v.Quality = v.Quality + 1;
                     }
                 }
-                else
+                else if (v.Name == "Backstage passes to a TAFKAL80ETC concert")
                 {
-                    if (v.Name == "Backstage passes to a TAFKAL80ETC concert")
+                    v.Quality = v.Quality - v.Quality;
+                } 
+                else 
+                {
+                    if (v.Quality > 0 && v.Name != "Sulfuras, Hand of Ragnaros")
                     {
-                        v.Quality = v.Quality - v.Quality;
-                    }
-                    else
-                    {
-                        if (v.Quality > 0)
-                        {
-                            if (v.Name != "Sulfuras, Hand of Ragnaros")
-                            {
-                                v.Quality = v.Quality - 1;
-                            }
-                        }
+                        v.Quality = v.Quality - 1;
                     }
                 }
             }
