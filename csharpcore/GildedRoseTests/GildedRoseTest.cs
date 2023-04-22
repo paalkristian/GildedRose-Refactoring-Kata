@@ -18,6 +18,15 @@ namespace GildedRoseTests
             Assert.Equal(5, items[1].Quality);
         }
         
+        [Fact]
+        public void Item_lowers_sell_in_value_at_end_of_day()
+        {
+            IList<Item> items = new List<Item> { new() { Name = "foo", SellIn = 5, Quality = 8 } };
+            GildedRose app = new GildedRose(items);
+            app.UpdateQuality();
+            Assert.Equal(4, items[0].SellIn);
+        }
+        
         //- Once the sell by date has passed, Quality degrades twice as fast
         [Fact]
         public void Item_lowers_value_twice_as_fast()
@@ -84,6 +93,36 @@ namespace GildedRoseTests
             GildedRose app = new GildedRose(items);
             app.UpdateQuality();
             Assert.Equal(25, items[0].Quality);
+        }
+        
+        [Fact]
+        public void Sulfuras_does_not_change_sell_in_value()
+        {
+            IList<Item> items = new List<Item> { new() { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 25 } };
+            GildedRose app = new GildedRose(items);
+            app.UpdateQuality();
+            Assert.Equal(10, items[0].SellIn);
+        }
+        
+        // - "Backstage passes", like aged brie, increases in Quality as its SellIn value approaches;
+        // Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
+        // Quality drops to 0 after the concert
+        [Fact]
+        public void Backstage_passes_increase_in_quality_when_less_than_10_days()
+        {
+            IList<Item> items = new List<Item> { new() { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 9, Quality = 10 } };
+            GildedRose app = new GildedRose(items);
+            app.UpdateQuality();
+            Assert.Equal(12, items[0].Quality);
+        }
+        
+        [Fact]
+        public void Backstage_passes_increase_in_quality_by_3_when_less_than_6_days()
+        {
+            IList<Item> items = new List<Item> { new() { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 5, Quality = 10 } };
+            GildedRose app = new GildedRose(items);
+            app.UpdateQuality();
+            Assert.Equal(13, items[0].Quality);
         }
 
 
