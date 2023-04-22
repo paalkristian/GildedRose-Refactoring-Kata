@@ -22,7 +22,7 @@ namespace GildedRoseKata
             {
                 if (v.Quality < 50)
                 {
-                    v.Quality = v.Quality + 1;
+                    v.Quality++;
 
                     if (v.Name == "Backstage passes to a TAFKAL80ETC concert")
                     {
@@ -30,7 +30,7 @@ namespace GildedRoseKata
                         {
                             if (v.Quality < 50)
                             {
-                                v.Quality = v.Quality + 1;
+                                v.Quality++;
                             }
                         }
 
@@ -38,7 +38,7 @@ namespace GildedRoseKata
                         {
                             if (v.Quality < 50)
                             {
-                                v.Quality = v.Quality + 1;
+                                v.Quality++;
                             }
                         }
                     }
@@ -50,14 +50,14 @@ namespace GildedRoseKata
                 {
                     if (v.Name != "Sulfuras, Hand of Ragnaros")
                     {
-                        v.Quality = v.Quality - 1;
+                        v.Quality--;
                     }
                 }
             }
 
             if (v.Name != "Sulfuras, Hand of Ragnaros")
             {
-                v.SellIn = v.SellIn - 1;
+                v.SellIn--;
             }
 
             if (v.SellIn < 0)
@@ -66,18 +66,18 @@ namespace GildedRoseKata
                 {
                     if (v.Quality < 50)
                     {
-                        v.Quality = v.Quality + 1;
+                        v.Quality++;
                     }
                 }
                 else if (v.Name == "Backstage passes to a TAFKAL80ETC concert")
                 {
-                    v.Quality = v.Quality - v.Quality;
+                    v.Quality = 0;
                 } 
                 else 
                 {
                     if (v.Quality > 0 && v.Name != "Sulfuras, Hand of Ragnaros")
                     {
-                        v.Quality = v.Quality - 1;
+                        v.Quality--;
                     }
                 }
             }
