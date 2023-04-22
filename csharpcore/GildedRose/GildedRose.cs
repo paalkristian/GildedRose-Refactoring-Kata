@@ -13,51 +13,47 @@ namespace GildedRoseKata
 
         public void UpdateItems()
         {
-            foreach (Item v in Items)
+            foreach (var v in Items)
                 UpdateItem(v);
         }
 
         private static void UpdateItem(Item v)
-    {
-      if (v.Name == "Sulfuras, Hand of Ragnaros")
-      {
-        return;
-      }
+        {
+            switch (v.Name)
+            {
+                case "Sulfuras, Hand of Ragnaros":
+                    return;
+                case "Aged Brie":
+                    IncreaseQuality(v);
+                    break;
+                case "Backstage passes to a TAFKAL80ETC concert":
+                    UpdateQualityForBackstagePasses(v);
+                    break;
+                default:
+                    DecreaseQuality(v);
+                    break;
+            }
 
-      if (v.Name == "Aged Brie")
-      {
-        IncreaseQuality(v);
-      }
-      else if (v.Name == "Backstage passes to a TAFKAL80ETC concert")
-      {
-        UpdateQualityForBackstagePasses(v);
-      }
-      else
-      {
-        DecreaseQuality(v);
-      }
+            v.SellIn--;
+            if (v.SellIn >= 0)
+            {
+                return;
+            }
 
-      v.SellIn--;
-      if (v.SellIn >= 0)
-      {
-        return;
-      }
-      
-      if (v.Name == "Aged Brie")
-      {
-        IncreaseQuality(v);
-      }
-      else if (v.Name == "Backstage passes to a TAFKAL80ETC concert")
-      {
-        v.Quality = 0;
-      }
-      else
-      {
-        DecreaseQuality(v);
-      }
-    }
+            switch (v.Name)
+            {
+                case "Aged Brie":
+                    break;
+                case "Backstage passes to a TAFKAL80ETC concert":
+                    v.Quality = 0;
+                    break;
+                default:
+                    DecreaseQuality(v);
+                    break;
+            }
+        }
 
-    private static void UpdateQualityForBackstagePasses(Item v)
+        private static void UpdateQualityForBackstagePasses(Item v)
         {
             IncreaseQuality(v);
 
@@ -69,11 +65,6 @@ namespace GildedRoseKata
             if (v.SellIn < 6)
             {
                 IncreaseQuality(v);
-
-
-
-
-                
             }
         }
 

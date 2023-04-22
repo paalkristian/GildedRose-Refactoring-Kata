@@ -56,6 +56,15 @@ namespace GildedRoseTests
             app.UpdateItems();
             Assert.Equal(6, items[0].Quality);
         }
+        
+        [Fact]
+        public void Aged_brie_increases_in_quality_when_sell_in_is_0()
+        {
+            IList<Item> items = new List<Item> { new() { Name = "Aged Brie", SellIn = 0, Quality = 5 } };
+            GildedRose app = new GildedRose(items);
+            app.UpdateItems();
+            Assert.Equal(6, items[0].Quality);
+        }
 
         [Fact]
         public void Item_names_are_case_sensitive()
