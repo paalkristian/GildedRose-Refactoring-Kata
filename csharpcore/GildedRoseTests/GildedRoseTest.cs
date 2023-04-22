@@ -47,5 +47,24 @@ namespace GildedRoseTests
             app.UpdateQuality();
             Assert.Equal(6, items[0].Quality);
         }
+
+        [Fact]
+        public void Item_names_are_case_sensitive()
+        {
+            IList<Item> items = new List<Item> { new() { Name = "aged brie", SellIn = 10, Quality = 5 } };
+            GildedRose app = new GildedRose(items);
+            app.UpdateQuality();
+            Assert.NotEqual(6, items[0].Quality);
+        }
+
+        // - The Quality of an item is never more than 50
+        [Fact]
+        public void Aged_brie_cannot_increase_in_quality_above_50()
+        {
+            IList<Item> items = new List<Item> { new() { Name = "Aged Brie", SellIn = 10, Quality = 50 } };
+            GildedRose app = new GildedRose(items);
+            app.UpdateQuality();
+            Assert.Equal(50, items[0].Quality);
+        }
     }
 }
