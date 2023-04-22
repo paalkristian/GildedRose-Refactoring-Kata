@@ -108,6 +108,15 @@ namespace GildedRoseTests
         // Quality increases by 2 when there are 10 days or less and by 3 when there are 5 days or less but
         // Quality drops to 0 after the concert
         [Fact]
+        public void Backstage_passes_increase_in_quality_by_1_when_more_than_10_days()
+        {
+            IList<Item> items = new List<Item> { new() { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 12, Quality = 10 } };
+            GildedRose app = new GildedRose(items);
+            app.UpdateQuality();
+            Assert.Equal(11, items[0].Quality);
+        }
+
+        [Fact]
         public void Backstage_passes_increase_in_quality_when_less_than_10_days()
         {
             IList<Item> items = new List<Item> { new() { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 9, Quality = 10 } };
@@ -123,6 +132,15 @@ namespace GildedRoseTests
             GildedRose app = new GildedRose(items);
             app.UpdateQuality();
             Assert.Equal(13, items[0].Quality);
+        }
+
+        [Fact]
+        public void Backstage_passes_loses_value_on_sellinday_0()
+        {
+            IList<Item> items = new List<Item> { new() { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 10 } };
+            GildedRose app = new GildedRose(items);
+            app.UpdateQuality();
+            Assert.Equal(0, items[0].Quality);
         }
 
 
