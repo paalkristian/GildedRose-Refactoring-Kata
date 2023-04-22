@@ -21,18 +21,15 @@ namespace GildedRoseKata
         {
             if (v.Name == "Aged Brie" )
             {
-                increaseQualtyForAgedBrie(v);
+                IncreaseQuality(v);
             }
             else if  (v.Name == "Backstage passes to a TAFKAL80ETC concert")
             {
                 UpdateQualityForBackstagePasses(v);
             }
-            else
+            else if (v.Name != "Sulfuras, Hand of Ragnaros")
             {
-                if (v.Quality > 0 && v.Name != "Sulfuras, Hand of Ragnaros")
-                {
-                    v.Quality--;
-                }
+                DecreaseQuality(v);
             }
 
             if (v.Name != "Sulfuras, Hand of Ragnaros")
@@ -44,22 +41,17 @@ namespace GildedRoseKata
             {
                 if (v.Name == "Aged Brie")
                 {
-                    increaseQualtyForAgedBrie(v);
+                    IncreaseQuality(v);
                 }
                 else if (v.Name == "Backstage passes to a TAFKAL80ETC concert")
                 {
                     v.Quality = 0;
                 }
-                else if (v.Quality > 0 && v.Name != "Sulfuras, Hand of Ragnaros")
+                else if (v.Name != "Sulfuras, Hand of Ragnaros")
                 {
-                    v.Quality--;
+                    DecreaseQuality(v);
                 }
             }
-        }
-
-        private static void increaseQualtyForAgedBrie(Item v)
-        {
-            IncreaseQuality(v);
         }
 
         private static void UpdateQualityForBackstagePasses(Item v)
@@ -87,6 +79,14 @@ namespace GildedRoseKata
             if (v.Quality < 50)
             {
                 v.Quality++;
+            }
+        }
+
+        private static void DecreaseQuality(Item v)
+        {
+            if (v.Quality > 0)
+            {
+                v.Quality--;
             }
         }
     }
