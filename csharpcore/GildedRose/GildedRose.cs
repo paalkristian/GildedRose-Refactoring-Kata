@@ -18,43 +18,46 @@ namespace GildedRoseKata
         }
 
         private static void UpdateItem(Item v)
-        {
-            if (v.Name == "Aged Brie" )
-            {
-                IncreaseQuality(v);
-            }
-            else if  (v.Name == "Backstage passes to a TAFKAL80ETC concert")
-            {
-                UpdateQualityForBackstagePasses(v);
-            }
-            else if (v.Name != "Sulfuras, Hand of Ragnaros")
-            {
-                DecreaseQuality(v);
-            }
+    {
+      if (v.Name == "Sulfuras, Hand of Ragnaros")
+      {
+        return;
+      }
 
-            if (v.Name != "Sulfuras, Hand of Ragnaros")
-            {
-                v.SellIn--;
-            }
+      if (v.Name == "Aged Brie")
+      {
+        IncreaseQuality(v);
+      }
+      else if (v.Name == "Backstage passes to a TAFKAL80ETC concert")
+      {
+        UpdateQualityForBackstagePasses(v);
+      }
+      else
+      {
+        DecreaseQuality(v);
+      }
 
-            if (v.SellIn < 0)
-            {
-                if (v.Name == "Aged Brie")
-                {
-                    IncreaseQuality(v);
-                }
-                else if (v.Name == "Backstage passes to a TAFKAL80ETC concert")
-                {
-                    v.Quality = 0;
-                }
-                else if (v.Name != "Sulfuras, Hand of Ragnaros")
-                {
-                    DecreaseQuality(v);
-                }
-            }
-        }
+      v.SellIn--;
+      if (v.SellIn >= 0)
+      {
+        return;
+      }
+      
+      if (v.Name == "Aged Brie")
+      {
+        IncreaseQuality(v);
+      }
+      else if (v.Name == "Backstage passes to a TAFKAL80ETC concert")
+      {
+        v.Quality = 0;
+      }
+      else
+      {
+        DecreaseQuality(v);
+      }
+    }
 
-        private static void UpdateQualityForBackstagePasses(Item v)
+    private static void UpdateQualityForBackstagePasses(Item v)
         {
             IncreaseQuality(v);
 
