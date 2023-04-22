@@ -78,12 +78,14 @@ namespace GildedRoseTests
 
         // - "Sulfuras", being a legendary item, never has to be sold or decreases in Quality
         [Fact]
-        public void Sulfuras_can_not_be_initialized_with_quality_less_than_80()
+        public void Sulfuras_does_not_change_in_quality()
         {
-            IList<Item> items = new List<Item> { new() { Name = "Aged Brie", SellIn = 10, Quality = 79 } };
+            IList<Item> items = new List<Item> { new() { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 25 } };
             GildedRose app = new GildedRose(items);
             app.UpdateQuality();
-            Assert.Equal(79, items[0].Quality);
+            Assert.Equal(25, items[0].Quality);
         }
+
+
     }
 }
