@@ -13,7 +13,7 @@ namespace GildedRoseTests
         {
             IList<Item> items = new List<Item> { new() { Name = "foo", SellIn = 5, Quality = 8 },new Item { Name = "bar", SellIn = 10, Quality = 6 }  };
             GildedRose app = new GildedRose(items);
-            app.UpdateQuality();
+            app.UpdateItems();
             Assert.Equal(7, items[0].Quality);
             Assert.Equal(5, items[1].Quality);
         }
@@ -23,7 +23,7 @@ namespace GildedRoseTests
         {
             IList<Item> items = new List<Item> { new() { Name = "foo", SellIn = 5, Quality = 8 } };
             GildedRose app = new GildedRose(items);
-            app.UpdateQuality();
+            app.UpdateItems();
             Assert.Equal(4, items[0].SellIn);
         }
         
@@ -33,7 +33,7 @@ namespace GildedRoseTests
         {
             IList<Item> items = new List<Item> { new() { Name = "foo", SellIn = 0, Quality = 8 } };
             GildedRose app = new GildedRose(items);
-            app.UpdateQuality();
+            app.UpdateItems();
             Assert.Equal(6, items[0].Quality);
         }
 
@@ -43,7 +43,7 @@ namespace GildedRoseTests
         {
             IList<Item> items = new List<Item> { new() { Name = "foo", SellIn = 0, Quality = 0 } };
             GildedRose app = new GildedRose(items);
-            app.UpdateQuality();
+            app.UpdateItems();
             Assert.Equal(0, items[0].Quality);
         }
 
@@ -53,7 +53,7 @@ namespace GildedRoseTests
         {
             IList<Item> items = new List<Item> { new() { Name = "Aged Brie", SellIn = 10, Quality = 5 } };
             GildedRose app = new GildedRose(items);
-            app.UpdateQuality();
+            app.UpdateItems();
             Assert.Equal(6, items[0].Quality);
         }
 
@@ -62,7 +62,7 @@ namespace GildedRoseTests
         {
             IList<Item> items = new List<Item> { new() { Name = "aged brie", SellIn = 10, Quality = 5 } };
             GildedRose app = new GildedRose(items);
-            app.UpdateQuality();
+            app.UpdateItems();
             Assert.NotEqual(6, items[0].Quality);
         }
 
@@ -72,7 +72,7 @@ namespace GildedRoseTests
         {
             IList<Item> items = new List<Item> { new() { Name = "Aged Brie", SellIn = 10, Quality = 50 } };
             GildedRose app = new GildedRose(items);
-            app.UpdateQuality();
+            app.UpdateItems();
             Assert.Equal(50, items[0].Quality);
         }
 
@@ -81,7 +81,7 @@ namespace GildedRoseTests
         {
             IList<Item> items = new List<Item> { new() { Name = "Aged Brie", SellIn = 10, Quality = 51 } };
             GildedRose app = new GildedRose(items);
-            app.UpdateQuality();
+            app.UpdateItems();
             Assert.Equal(51, items[0].Quality);
         }
 
@@ -91,7 +91,7 @@ namespace GildedRoseTests
         {
             IList<Item> items = new List<Item> { new() { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 25 } };
             GildedRose app = new GildedRose(items);
-            app.UpdateQuality();
+            app.UpdateItems();
             Assert.Equal(25, items[0].Quality);
         }
         
@@ -100,7 +100,7 @@ namespace GildedRoseTests
         {
             IList<Item> items = new List<Item> { new() { Name = "Sulfuras, Hand of Ragnaros", SellIn = 10, Quality = 25 } };
             GildedRose app = new GildedRose(items);
-            app.UpdateQuality();
+            app.UpdateItems();
             Assert.Equal(10, items[0].SellIn);
         }
         
@@ -112,7 +112,7 @@ namespace GildedRoseTests
         {
             IList<Item> items = new List<Item> { new() { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 12, Quality = 10 } };
             GildedRose app = new GildedRose(items);
-            app.UpdateQuality();
+            app.UpdateItems();
             Assert.Equal(11, items[0].Quality);
         }
 
@@ -121,7 +121,7 @@ namespace GildedRoseTests
         {
             IList<Item> items = new List<Item> { new() { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 9, Quality = 10 } };
             GildedRose app = new GildedRose(items);
-            app.UpdateQuality();
+            app.UpdateItems();
             Assert.Equal(12, items[0].Quality);
         }
         
@@ -130,7 +130,7 @@ namespace GildedRoseTests
         {
             IList<Item> items = new List<Item> { new() { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 5, Quality = 10 } };
             GildedRose app = new GildedRose(items);
-            app.UpdateQuality();
+            app.UpdateItems();
             Assert.Equal(13, items[0].Quality);
         }
 
@@ -139,7 +139,7 @@ namespace GildedRoseTests
         {
             IList<Item> items = new List<Item> { new() { Name = "Backstage passes to a TAFKAL80ETC concert", SellIn = 0, Quality = 10 } };
             GildedRose app = new GildedRose(items);
-            app.UpdateQuality();
+            app.UpdateItems();
             Assert.Equal(0, items[0].Quality);
         }
 
